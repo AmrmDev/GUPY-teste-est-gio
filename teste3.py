@@ -31,28 +31,23 @@ def calculo_do_faturamento(arquivo_json):
     if not valores_faturamento:
         return "impossivel resgatar valor."
     
-    # Cálculos
     menor_faturamento = min(valores_faturamento)
     maior_faturamento = max(valores_faturamento)
     media_faturamento = sum(valores_faturamento) / len(valores_faturamento)
     
-    # Contar dias com faturamento acima da média
     dias_acima_da_media = sum(1 for valor in valores_faturamento if valor > media_faturamento)
 
-    # Resultados
     return {
         "menor_faturamento": menor_faturamento,
         "maior_faturamento": maior_faturamento,
         "dias_acima_da_media": dias_acima_da_media
     }
 
-# 4. Executar o salvamento e o cálculo
 arquivo_json = 'faturamento.json'
 salvar_json(arquivo_json, faturamento)
 
 resultado = calculo_do_faturamento(arquivo_json)
 
-# 5. Exibir resultados
 print("menor faturamento:", resultado["menor_faturamento"])
 print("maior faturamento:", resultado["maior_faturamento"])
 print("número de dias acima da média:", resultado["dias_acima_da_media"])
